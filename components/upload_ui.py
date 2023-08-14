@@ -95,17 +95,21 @@ class ContentUpload:
                 # once done we need to save all of these content inside our content bank repo
                 # will be done soon
                 # now save all the uploaded content
-                
+                _upload_datetime = datetime.now()
+                _upload_date = f"{_upload_datetime.day}.{_upload_datetime.month}.{_upload_datetime.year}"
+                _upload_time = f"{_upload_datetime.hour}:{_upload_datetime.minute}"
                 if submit_button:
                     content = {
-                            'clothing_sizes': clothing_sizes,
-                            'clothing_desc': clothing_desc,
-                            # we can incorporate a better strategy later
-                            'estimated_price_range': [clothing_price - 100, clothing_price + 100],
-                            # configure the required folders
-                            'user_content_folder': os.path.join(content_upload_folder, 'user_content'),
-                            'stability_ai_folder': os.path.join(content_upload_folder, 'stability_ai'),
-                            'virtual_trial_folder': os.path.join(content_upload_folder, 'virtual_trial_folder')
+                        'upload_date': _upload_date,
+                        'upload_time': _upload_time,
+                        'clothing_sizes': clothing_sizes,
+                        'clothing_desc': clothing_desc,
+                        # we can incorporate a better strategy later
+                        'estimated_price_range': [clothing_price - 100, clothing_price + 100],
+                        # configure the required folders
+                        'user_content_folder': os.path.join(content_upload_folder, 'user_content'),
+                        'stability_ai_folder': os.path.join(content_upload_folder, 'stability_ai'),
+                        'virtual_trial_folder': os.path.join(content_upload_folder, 'virtual_trial_folder')
                     }
 
                     # also make the folder structure for the ai generated at the same time
